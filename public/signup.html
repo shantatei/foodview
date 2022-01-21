@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Restaurant Review Website</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/signupform.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+
+</head>
+
+
+<body onload="checkInputs()">
+    <!-- Include top navigation here -->
+    <div w3-include-html="top-navigation.html"></div>
+    <div class="container d-flex justify-content-center">
+        <div class="row mt-5" id="parent">
+            <div class="header">
+                <h1>Create Account</h1>
+            </div>
+            <form id="form" class="form">
+                <!-- Username -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input class="form-control" id="username" placeholder="Enter Username" required maxlength="20" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+
+                <!-- div for firstname and lastname -->
+                <div class="row">
+                    <div class="col">
+                        <label for="exampleInputEmail1">First name</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="First name" required
+                            maxlength="20">
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+                    <div class="col">
+                        <label for="exampleInputEmail1">Last name</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Last name" required
+                            maxlength="20">
+                        <i class="fas fa-check-circle"></i>
+                        <i class="fas fa-exclamation-circle"></i>
+                        <small>Error message</small>
+                    </div>
+                </div>
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
+                        placeholder="Enter Email" required autocomplete="off">
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <!-- Telephone -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Telephone</label>
+                    <input type="mobilenum" class="form-control" id="mobilenum" placeholder="Enter Telephone" required>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Address</label>
+                    <input type="address" class="form-control" id="address" placeholder="Enter Address" required>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <!-- Gender -->
+                <div class="form-group">
+                    <legend class="col-form-label ">Gender</legend>
+                    <div class="border border-secondary" style="border:1px solid #ced4da !important">
+
+                        <div class="form-check">
+                            <input name="gender" value="male" id="male" type="radio" class="form-check-input" checked>
+                            <label class="form-check-label" for="male">Male</label>
+                        </div>
+
+                        <div class="form-check">
+                            <input name="gender" value="female" id="female" type="radio" class="form-check-input">
+                            <label class="form-check-label" for="female">Female</label>
+                        </div>
+                    </div>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <!-- Password -->
+                <div class="form-group ">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                <!-- Signup Btn -->
+                <button>Submit</button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- onclick="registerMe()"   -->
+    <div w3-include-html="footer.html"></div>
+    <div w3-include-html="success-modal.html"></div>
+    <div w3-include-html="fail-modal.html"></div>
+
+
+</body>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+    //to bring in other HTML on the fly into this page
+    w3.includeHTML();
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/86ec7c1143.js"></script>
+<script src="js/register.js"></script>
+
+
+
+</html>

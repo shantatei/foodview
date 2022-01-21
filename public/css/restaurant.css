@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+.container{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    display: block;
+    align-items: center;
+    border: 1px solid #0f0505;
+}
+
+#restaurantPic{
+    width: 250px;
+    height: 250px;
+}
+
+.card-body{
+    margin-top: 10px;
+    text-align: start;
+    border: 1px solid #0f0505;
+}
+
+.dropdown-item:hover .dropdown-menu  {
+    display: block;
+    margin-top: 0; 
+ }
+
+ .navbar-brand{
+    border-radius: 50%;
+    display: none;
+}
+
+footer {
+    background: #aaa;
+    color: white;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+
+
+.edit {
+    float: right;
+    padding-right: 10px;
+}
+#Searchbar{
+    padding: 20px; 
+    width: 200px;
+    height: 15px;    
+}
+#target{
+    border-radius: 50%;
+}
+
+#newReview{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

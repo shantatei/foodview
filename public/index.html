@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Restaurant Review Website</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mystyle.css">
+
+
+</head>
+
+
+<body onload="getRestaurantData()">
+    <!-- Include top navigation here -->
+    <div w3-include-html="top-navigation.html"></div>
+
+    <form class="form-inline">
+        <input class="form-control mr-sm-3 " oninput="SearchRestaurant()" id="searchbar" type="search"
+            placeholder="Search" aria-label="Search">
+    </form>
+
+    <div class="btn-group-horizontal" id="filters">
+        <form>
+            <label for="chineseCheckbox"  class="btn btn-primary m-2">
+                Chinese
+            </label>
+            <input  type="checkbox"oninput="filterMe(event)"value="chinese" name="tags"id="chineseCheckbox">
+            <label for="japaneseCheckbox" class="btn btn-primary m-2">
+                Japanese
+            </label>
+            <input type="checkbox" oninput="filterMe(event)" value="japanese"  name="tags"id="japaneseCheckbox">
+            <label for="westernCheckbox" class="btn btn-primary m-2">
+                Western
+            </label>
+            <input  type="checkbox" oninput="filterMe(event)"value="western"  name="tags"id="westernCheckbox">
+            <label for="europeanCheckbox" class="btn btn-primary m-2">
+                European
+            </label>
+            <input  type="checkbox" oninput="filterMe(event)" value="european"  name="tags"id="europeanCheckbox">
+            <label for="koreanCheckbox" class="btn btn-primary m-2">
+                Korean
+            </label>
+            <input  type="checkbox" oninput="filterMe(event)" value="korean"  name="tags"id="koreanCheckbox">
+
+
+        </form>
+    </div>
+    <!-- This is the container that holds the restaurants -->
+    <div class="container">
+        <p>
+
+        </p>
+        <!-- Displays thumbnails of the restaurants here -->
+        <div id="restaurantsTable" class="row"></div>
+    </div>
+
+    <!-- Include the comments modal here -->
+    <div w3-include-html="comments-modal.html"></div>
+    <!-- Include the new comments modal here -->
+    <div w3-include-html="new-comments-modal.html"></div>
+    <!-- Include the edit comments modal here -->
+    <div w3-include-html="edit-comments-modal.html"></div>
+    <!-- Include the message modal here -->
+    <div w3-include-html="message-modal.html"></div>
+    <br><br>
+    <!-- Include the footer here -->
+    <div w3-include-html="footer.html"></div>
+
+    <div w3-include-html="register-modal.html"></div>
+    <div w3-include-html="success-modal.html"></div>
+    <div w3-include-html="fail-modal.html"></div>
+    <div w3-include-html="login-modal.html"></div>
+
+</body>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+    //to bring in other HTML on the fly into this page
+    w3.includeHTML();
+</script>
+<script src="https://kit.fontawesome.com/7ec0d1617e.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/86ec7c1143.js"></script>
+<script src="js/app.js"></script>
+<script src="js/restaurant.js"></script>
+<script src="js/login.js"></script>
+<script src="js/checktoken.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/loadingProfile.js"></script>
+
+
+
+</html>

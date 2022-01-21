@@ -1,0 +1,72 @@
+footer {
+    background: #aaa;
+    color: white;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+
+
+.edit {
+    float: right;
+    padding-right: 10px;
+}
+#Searchbar{
+    padding: 20px; 
+    width: 200px;
+    height: 15px;    
+}
+#target{
+    border-radius: 50%;
+}
+.navbar-brand{
+    border-radius: 50%;
+    display: none;
+}
+.card-body[item]{
+    border-top: 1px solid black;
+    height: 60px;
+}
+#restaurantsTable{
+    justify-content: center;
+    align-items: center;
+}
+.form-inline{
+    padding-top:10px;
+    justify-content: center;
+    align-items: center;
+}
+#searchbar{
+    width: 800px;
+    border-color: black;
+}
+.dropdown-item:hover .dropdown-menu  {
+    display: block;
+    margin-top: 0; 
+ }
+
+ #filters{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    border-color: black;
+ }
+
+
+
+button:hover{
+    background-color: rgb(75, 144, 224) ; 
+}
+
+button{
+    background-color: rgb(195, 195, 224);
+}
+
+
+
+
+
+
+

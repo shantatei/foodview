@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Restaurant Review Website</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/restaurant.css">
+
+
+</head>
+
+
+<body>
+    <!-- Include top navigation here -->
+    <div w3-include-html="top-navigation.html"></div>
+    <div class="container ">
+        <!-- Restaurant Title -->
+        <h2 id="restaurantTitle">Restaurant Title</h2>
+        <!-- Restaurant Image -->
+        <img class="img-fluid img-thumbnail" id="restaurantPic">
+
+        <!-- Restaurat Details -->
+        <div class="restaurantDetails">
+            <h3>About </h3>
+            <p id="description"></p>
+            <h3>Type </h3>
+            <p id="type"></p>
+            <h3>Opening Hours </h3>
+            <p id="Availability"></p>
+            <h3>Location </h3>
+            <p id="location"></p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <h3 style="margin-top: 10px;">Reviews</h3>
+        <div class="card-body border-0">
+
+            <div id="emptyComment">No review yet. Create one now</div>
+            <div class="row px-5" id="commentBody"></div>
+
+        </div>
+
+        <button type="button" class="btn btn-dark" id="newReview" data-toggle="modal" data-target="#newCommentModal"
+            data-dismiss="modal" onClick="newComment()"><i class="fas fa-comment"></i> Write a Review </button>
+
+    </div>
+
+
+    <!-- Include the message modal here -->
+    <div w3-include-html="message-modal.html"></div>
+    <br><br>
+    <!-- Include the footer here -->
+    <div w3-include-html="footer.html"></div>
+    <div w3-include-html="edit-comments-modal.html"></div>
+    <div w3-include-html="new-comments-modal.html"></div>
+    <div w3-include-html="register-modal.html"></div>
+    <div w3-include-html="success-modal.html"></div>
+    <div w3-include-html="fail-modal.html"></div>
+    <div w3-include-html="login-modal.html"></div>
+
+</body>
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+    //to bring in other HTML on the fly into this page
+    w3.includeHTML();
+</script>
+<script src="https://kit.fontawesome.com/7ec0d1617e.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://kit.fontawesome.com/86ec7c1143.js"></script>
+<script src="js/app.js"></script>
+<script src="js/restaurantpage.js"></script>
+<script src="js/login.js"></script>
+<script src="js/checktoken.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/loadingProfile.js"></script>
+<script src="js/loadComments.js"></script>
+
+
+</html>
