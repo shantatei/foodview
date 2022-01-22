@@ -64,6 +64,10 @@ button{
     background-color: rgb(195, 195, 224);
 }
 
+input[type="checkbox"] {
+    display: none;
+}
+
 
 
 

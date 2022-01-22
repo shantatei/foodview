@@ -1,4 +1,7 @@
 //This function is to call the restaurant api and get all the restaurants
+
+const e = require("express");
+
 //that is showing in Shaw Theatres for Showing Now and Coming Soon
 function getRestaurantData() {
     var request = new XMLHttpRequest();
@@ -99,7 +102,7 @@ function SearchRestaurant() {
                     filteredRestaurants.push(restaurant_array[index])
 
                 }
-            
+
             }
 
             displayRestaurants(null, filteredRestaurants)
@@ -124,24 +127,50 @@ function fetchComments() {
     request.open('GET', comment_url, true);
 
     //This command starts the calling of the comments api
-    request.onload = function() {
-    //get all the comments records into our comments array
-    comment_array = JSON.parse(request.responseText);
-    sessionStorage.setItem("comments",JSON.stringify(comment_array));
-    console.log(comment_array);
+    request.onload = function () {
+        //get all the comments records into our comments array
+        comment_array = JSON.parse(request.responseText);
+        sessionStorage.setItem("comments", JSON.stringify(comment_array));
+        console.log(comment_array);
     };
 
     request.send();
 }
 
-function filterMe(event){
+function filterMe(event) {
 
-    // let element = document.querySelector(`input[id="${event.target.getAttribute('for')}"]`)
-    element = event.target
+    let filteredrestaurants = []
+    let element = event.target
+    let type = element.getAttribute('value');
+    let label = document.querySelector(`label[for="${element.id}"]`)
+    console.log(type);
 
-   console.log(element);
-   console.log(element.checked);
+    document.querySelectorAll(`input[value]:not(input[value="${type}"])`).forEach(filter => {
+        filter.checked = false;
+        document.querySelector(`label[for="${filter.id}"]`).classList.add('btn-primary')
+        document.querySelector(`label[for="${filter.id}"]`).classList.remove('btn-secondary')
+    });
+
+    if (element.checked) {
+        label.classList.remove('btn-primary')
+        label.classList.add('btn-secondary')
+        for (let index = 0; index < restaurant_array.length; index++) {
+            if (restaurant_array[index].type == type) {
+
+                filteredrestaurants.push(restaurant_array[index])
+
+            }
+
+        }
+        displayRestaurants(null, filteredrestaurants)
+    } else {
+        label.classList.add('btn-primary')
+        label.classList.remove('btn-secondary')
+        displayRestaurants(null, restaurant_array)
+    }
+
     
+
 }
 
 
