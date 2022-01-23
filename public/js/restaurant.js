@@ -147,13 +147,13 @@ function filterMe(event) {
 
     document.querySelectorAll(`input[value]:not(input[value="${type}"])`).forEach(filter => {
         filter.checked = false;
-        document.querySelector(`label[for="${filter.id}"]`).classList.add('btn-primary')
-        document.querySelector(`label[for="${filter.id}"]`).classList.remove('btn-secondary')
+        document.querySelector(`label[for="${filter.id}"]`).classList.add('btn-secondary')
+        document.querySelector(`label[for="${filter.id}"]`).classList.remove('btn-primary')
     });
 
     if (element.checked) {
-        label.classList.remove('btn-primary')
-        label.classList.add('btn-secondary')
+        label.classList.remove('btn-secondary')
+        label.classList.add('btn-primary')
         for (let index = 0; index < restaurant_array.length; index++) {
             if (restaurant_array[index].type == type) {
 
@@ -164,8 +164,8 @@ function filterMe(event) {
         }
         displayRestaurants(null, filteredrestaurants)
     } else {
-        label.classList.add('btn-primary')
-        label.classList.remove('btn-secondary')
+        label.classList.add('btn-secondary')
+        label.classList.remove('btn-primary')
         displayRestaurants(null, restaurant_array)
     }
 
