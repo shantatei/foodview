@@ -32,6 +32,13 @@ class UsersDB{
         return db.query(sql,[username],callback)
     }
 
+    forgetPassword(email,callback){
+        var sql = "SELECT * from restaurant_review.users where email = ?"
+        return db.query(sql,[email],callback)
+    }
+
+
+
 }
 
 module.exports = UsersDB;

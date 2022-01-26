@@ -4,6 +4,7 @@ var restaurantController = require('./controllers/restaurantController');
 var commentController = require('./controllers/commentController');
 var userController = require('./controllers/userController');
 var favouriteController = require('./controllers/favouriteController');
+const res = require("express/lib/response");
 var app = express();
 
 app.use(express.static("./public"));
@@ -27,6 +28,11 @@ app.route('/users').put(userController.updateUser);
 app.route('/delete').delete(userController.deleteUser);
 app.route('/login').post(userController.LoginUser);
 app.route('/member').post(userController.getUser);
+app.route('/forgetpassword').post(userController.forgetPassword);
+app.get('/:token', (req, res)=>res.sendFile(__dirname + '/public/reset-password.html'));
+// app.route('/email').post(userController.sentMail);
+
+
 
 //favourites routes
 app.route('/favourites').get(favouriteController.getAllFavourites)
