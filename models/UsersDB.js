@@ -37,6 +37,11 @@ class UsersDB{
         return db.query(sql,[email],callback)
     }
 
+    updatePassword(password,username,callback){
+        var sql = "UPDATE restaurant_review.users SET password = ? WHERE username = ?";
+        return db.query(sql,[password,username],callback)
+    }
+
 
 
 }

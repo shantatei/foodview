@@ -1,6 +1,8 @@
-POST http://127.0.0.1:8080/forgetpassword
+POST http://127.0.0.1:8080/validate
 Content-Type: application/json
 
 {
-    "email":"teirenxuanshanta@gmail.com"
+    "username": "shanta",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlaXJlbnh1YW5zaGFudGFAZ21haWwuY29tIiwiX2lkIjoxMjksInVzZXJuYW1lIjoic2hhbnRhIiwiaWF0IjoxNjQzMjczMzg4LCJleHAiOjE2NDMyNzQyODh9.uFbD9lSXRRVFI7dNJpImVHfnI1U3AXxhw9DhoN1cM24"
+
 }

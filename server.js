@@ -29,9 +29,11 @@ app.route('/delete').delete(userController.deleteUser);
 app.route('/login').post(userController.LoginUser);
 app.route('/member').post(userController.getUser);
 app.route('/forgetpassword').post(userController.forgetPassword);
-app.get('/:token', (req, res)=>res.sendFile(__dirname + '/public/reset-password.html'));
-// app.route('/email').post(userController.sentMail);
-
+app.get('/:username/:token', (req, res)=>{
+    res.sendFile(__dirname + '/public/reset-password.html')
+});
+app.post('/validate', userController.validation);
+app.put('/updatepassword',userController.updatePassword);
 
 
 //favourites routes
