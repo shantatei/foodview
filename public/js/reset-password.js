@@ -9,9 +9,11 @@
  validate.onload = function(){
      let responseText = JSON.parse(validate.responseText)
      if (responseText != "success"){
-
-        window.location.href = "/invalidlink.html"
- 
+         if (responseText == "jwt expired") {
+            window.location.href = "/linkexpired.html"
+         } else {
+             window.location.href = "/invalidlink.html"
+         }
      }
  }
  validate.send(JSON.stringify({

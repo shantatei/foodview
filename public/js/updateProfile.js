@@ -24,6 +24,7 @@ function update(){
     updateUser.onload = function(){
 
         $('#successModal').modal('show');
+        document.location.reload(true)
           
     }
     mobilenum = document.getElementById("telephone").value;

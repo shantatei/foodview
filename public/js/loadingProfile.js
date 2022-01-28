@@ -6,6 +6,7 @@ $(document).ready(function () {
     if (token == null) {
         console.log("user not logged in");
         $('#newReview').hide();
+        $('#favourites').hide();
     } else {
         getProfile.open("POST", "/member", true);
         getProfile.setRequestHeader("Content-Type", "application/json");

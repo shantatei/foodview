@@ -10,10 +10,11 @@ $(document).ready(function () {
             document.getElementById("emptyComment").innerHTML = "";
             star = "";
             var html = '<div class="text-center" style="width:100%;">                                                           \
-                               <div class="card border-0" username = "'+comment_array[i].username+'">                                                                                  \
-                                   <div class="card-body ">                                                                         \
-                                       <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
-                                       <small>by " + comment_array[i].username + " @ " + comment_array[i].dateposted + "</small>   \
+                               <div class="card border-0" username = "'+comment_array[i].username+'">                             \
+                                   <div class="card-body ">                                                                         \ \
+                                   <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
+                                   <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
+                                   <small>  @ " + comment_array[i].dateposted + "</small>   \
                                    </div>                                                                                          \
                                </div>                                                                                              \
                            </div>";
@@ -26,7 +27,7 @@ $(document).ready(function () {
             }
             star += "<i class='d-none far fa-trash-alt fa-2x edit deletecomment' data-dismiss='modal' item='" + i + "' onClick='deleteComment(this)' ></i>";
             star += "<i class='d-none far fa-edit fa-2x edit editcomment' data-toggle='modal' data-target='#editCommentModal' item='" + i + "' onClick='editComment(this)' ></i>";
-            document.getElementById("rating" + i).insertAdjacentHTML('beforebegin', star + "<br/>");
+            document.getElementById("rating" + i).insertAdjacentHTML('afterend', star + "<br/>");
         }
 
 
@@ -35,7 +36,11 @@ $(document).ready(function () {
     document.getElementById("restaurantPic").src = restaurant_array[item].picture;
     document.getElementById("type").textContent = restaurant_array[item].type;
     document.getElementById("location").textContent = restaurant_array[item].location_name;
-    document.getElementById("Availability").textContent = restaurant_array[item].availability;
+    document.getElementById("monday").textContent = "Monday :" + restaurant_array[item].monday;
+    document.getElementById("tuesday").textContent = "Tuesday :" + restaurant_array[item].tuesday;
+    document.getElementById("wednesday").textContent = "Wednesday :" + restaurant_array[item].wednesday;
+    document.getElementById("thursday").textContent = "Thursday :" + restaurant_array[item].thursday;
+    document.getElementById("friday").textContent = "Friday:" + restaurant_array[item].friday;
     document.getElementById("description").textContent = restaurant_array[item].about;
 
 

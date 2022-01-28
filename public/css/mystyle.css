@@ -8,7 +8,7 @@
     width: 200px;
     height: 15px;    
 }
-#target{
+#target,#foodview{
     border-radius: 50%;
 }
 .navbar-brand{

@@ -7,6 +7,36 @@ var secret = "somesecretkey";
 const sgMail = require('@sendgrid/mail');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
+var nodemailer = require('nodemailer');
+
+var transponder = nodemailer.createTransport({
+    service:'gmail',
+    auth:{
+        user: 'botseng1@gmail.com',
+        pass:'shantasen'
+    }
+})
+
+function sendGmail(email,content){
+
+    var mailoptions = {
+        from :'teirenxuanshanta@gmail.com',
+        to: email ,
+        subject: 'Password reset link',
+        text: content,
+        html: '<strong>' + content + '</strong>'
+    }
+
+    transponder.sendMail(mailoptions,function(error,info) {
+        if (error) {
+            console.log(error);
+        } else {
+            console.log('Email sent: ' + info.response);
+        }
+        
+    })
+    
+}
 
 
 var usersDB = new UsersDB();
@@ -149,7 +179,7 @@ function forgetPassword(request, respond) {
                 let username = result[0].username;
                 let token = jwt.sign({ email: userEmail, _id: userID, username: username }, emailSecret, { expiresIn: '15m' });
                 let link = `http://127.0.0.1:8080/${result[0].username}/${token}`;
-                let sent = sentMail(userEmail, link);
+                let sent = sendGmail(userEmail, link);
                 sent != false ? respond.json('success') : respond.json('failure')
 
             } else {
@@ -175,7 +205,9 @@ function validation(req, res) {
                     let decoded = jwt.verify(token, secretKey);
                     res.json('success')
                 } catch (error) {
-                    res.json('invalid token');
+                    console.log(error.message);
+                    res.json(error.message)
+                    // res.json('invalid token');
                 }
             }else {
                 res.json('invalid username')
