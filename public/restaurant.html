@@ -16,7 +16,10 @@
     <div w3-include-html="top-navigation.html"></div>
     <div class="container ">
         <!-- Restaurant Title -->
-        <h2 id="restaurantTitle">Restaurant Title</h2>
+        <h2 id="restaurantTitle" >Restaurant Title</h2>
+        <Button class="btn favbtn" title="Add to Favourites" onclick="toggleLike(this)" item="' + count + '" id="favbtns">
+            <i class=" far fa-heart fa-lg" item="' + count + '"></i>
+        </Button>
         <!-- Restaurant Image -->
         <img class="img-fluid img-thumbnail" id="restaurantPic">
 
@@ -27,13 +30,6 @@
             <h3>Type </h3>
             <p id="type"></p>
             <h3>Opening Hours </h3>
-            <!-- <div class="dropdown-menu">
-                <p class="dropdown-item"id="monday"></p>
-                <p class="dropdown-item"id="tuesday"></p>
-                <p class="dropdown-item"id="wednesday"></p>
-                <p class="dropdown-item"id="thursday"></p>
-                <p class="dropdown-item"id="friday"></p> 
-              </div> -->
             <p id="monday"></p>
             <p id="tuesday"></p>
             <p id="wednesday"></p>
@@ -63,7 +59,7 @@
     <!-- Include the message modal here -->
     <div w3-include-html="message-modal.html"></div>
     <br><br>
-    
+
     <div w3-include-html="edit-comments-modal.html"></div>
     <div w3-include-html="new-comments-modal.html"></div>
     <div w3-include-html="register-modal.html"></div>

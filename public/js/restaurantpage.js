@@ -1,8 +1,10 @@
 $(document).ready(function () {
     var restaurant_array = JSON.parse(sessionStorage.getItem("restaurant"));
     var item = sessionStorage.getItem("item");
+    console.log(item);
     currentIndex = item;
     var comment_array = JSON.parse(sessionStorage.getItem('comments'));
+    let favlist = JSON.parse(sessionStorage.getItem('favlist'))
     for (var i = 0; i < comment_array.length; i++) {
         if (comment_array[i].restaurantId === restaurant_array[item]._id) {
 
@@ -29,7 +31,19 @@ $(document).ready(function () {
             star += "<i class='d-none far fa-edit fa-2x edit editcomment' data-toggle='modal' data-target='#editCommentModal' item='" + i + "' onClick='editComment(this)' ></i>";
             document.getElementById("rating" + i).insertAdjacentHTML('afterend', star + "<br/>");
         }
-
+        for (let index = 0; index < favlist.length; index++) {
+            if (favlist[index].restaurantId == restaurant_array[item]._id) {
+                console.log("yes");
+                document.querySelector(`.favbtn i`).classList.remove('far')
+                document.querySelector(`.favbtn i`).classList.add('fas')
+                document.querySelector(`.favbtn i`).title = "Delete from favourites"
+            }else{
+                console.log("not favourited");
+            }
+            
+            
+        }
+       
 
     }
     document.getElementById("restaurantTitle").textContent = restaurant_array[item].name;
@@ -207,3 +221,66 @@ function addComment() {
     postComment.send(JSON.stringify(comment)); 
 }
 
+function toggleLike(element) {
+    var item = sessionStorage.getItem('item')
+    let username = JSON.parse(sessionStorage.getItem('profile'))[0].username
+    favbtn = element.querySelector('i')
+    var restaurant_array = JSON.parse(sessionStorage.getItem("restaurant"));
+
+    if (favbtn.classList.contains('fas')) {
+        //delete
+        getfav(username, restaurant_array[item]._id)
+        favbtn.classList.remove('fas')
+        favbtn.classList.add('far')
+        favbtn.title = "Add to Favourites"
+    } else {
+        //add
+        var addfavourites = new XMLHttpRequest();
+        var token = sessionStorage.getItem('token')
+        addfavourites.open('POST', `/favourites/${token}`, true)
+        addfavourites.setRequestHeader('Content-Type', 'application/json')
+        var restaurantid = restaurant_array[item]._id
+        addfavourites.onload = function () {
+            let results = JSON.parse(addfavourites.responseText)
+            if (results.affectedRows == 1) {
+                favbtn.classList.add('fas')
+                favbtn.classList.remove('far')
+                favbtn.title = "Delete from Favourites"
+                getfav()
+
+            } else {
+                console.log(results.code);
+            }
+
+        }
+        addfavourites.send(JSON.stringify({ restaurantid }))
+    }
+
+}
+
+function getfav(username, restaurantid) {
+
+    var getfav = new XMLHttpRequest();
+    var token = sessionStorage.getItem('token')
+    getfav.open('GET', `/favourites/${token}`, true)
+    getfav.onload = function () {
+        if (username && restaurantid) {
+            let results = JSON.parse(getfav.responseText)
+            results.forEach(favs => {
+                if (favs.username == username && restaurantid == favs.restaurantId) {
+                    let deleteFav = new XMLHttpRequest();
+                    deleteFav.open("DELETE", `/favourites/${favs._id}`, true)
+                    deleteFav.onload = function () {
+                        if (JSON.parse(deleteFav.responseText).affectedRows != 1) {
+                            console.log(JSON.parse(deleteFav.responseText).code);
+                        }
+                    }
+                    deleteFav.send()
+                }
+            })
+        } else {
+            sessionStorage.setItem('favlist', getfav.responseText)
+        }
+    }
+    getfav.send()
+}

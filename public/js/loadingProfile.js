@@ -7,6 +7,7 @@ $(document).ready(function () {
         console.log("user not logged in");
         $('#newReview').hide();
         $('#favourites').hide();
+        $('#favbtns').hide();
     } else {
         getProfile.open("POST", "/member", true);
         getProfile.setRequestHeader("Content-Type", "application/json");

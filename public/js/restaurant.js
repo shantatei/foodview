@@ -27,10 +27,12 @@ function getRestaurantData() {
 
 function displayRestaurants(category, restaurantArray) {
 
-    let listOfRestaurants = JSON.parse(sessionStorage.getItem('restaurant'))
+    // let listOfRestaurants = JSON.parse(sessionStorage.getItem('restaurant'))
     if (restaurantArray) {
 
         listOfRestaurants = restaurantArray
+    }else{
+        listOfRestaurants = restaurant_array
     }
     var table = document.getElementById("restaurantsTable");
     var restaurantCount = 0;
@@ -82,6 +84,7 @@ function displayRestaurants(category, restaurantArray) {
 function gotorestaurant(element) {
     window.location.href = "restaurant.html"
     var item = element.getAttribute("item");
+    console.log(item);
     sessionStorage.setItem("item", item);
 }
 
@@ -131,6 +134,7 @@ function SearchRestaurant() {
             }
 
             displayRestaurants(null, filteredRestaurants)
+            sessionStorage.setItem("restaurant", JSON.stringify(filteredRestaurants));
 
 
         } else {
@@ -188,6 +192,7 @@ function filterMe(event) {
 
         }
         displayRestaurants(null, filteredrestaurants)
+        sessionStorage.setItem("restaurant", JSON.stringify(filteredrestaurants));
     } else {
         label.classList.add('btn-secondary')
         label.classList.remove('btn-primary')
@@ -274,6 +279,7 @@ function onclickFav() {
         })
     })
     displayRestaurants(null, favRestaurants)
+    sessionStorage.setItem("restaurant", JSON.stringify(favRestaurants));
 }  
 
 
