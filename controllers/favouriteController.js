@@ -1,6 +1,8 @@
 "use strict";
 const FavouritesDB = require('../models/FavouritesDB');
 const Favourites = require('../models/Favourites')
+var secret = "somesecretkey";
+var jwt = require('jsonwebtoken');
 
 var favouritesDB = new FavouritesDB();
 
@@ -17,29 +19,44 @@ function getAllFavourites(request, respond){
 }
 
 function getSomeFavourites (request, respond){
-    var userID = request.params.userId;
-    favouritesDB.getSomeFavourites(userID,function(error, result){
-        if(error){
-            respond.json(error);
-        }
-        else{
-            respond.json(result);
-        }
-    });
+    var token = request.params.token;
+    try {
 
+        let username = jwt.verify(token,secret)
+        favouritesDB.getSomeFavourites(username,function(error, result){
+            if(error){
+                respond.json(error);
+            }
+            else{
+                respond.json(result);
+            }
+        });
+        
+    } catch (error) {
+        respond.json("invalid token")
+        
+    }
+  
 }
 
 function addFavourites(request, respond){
-    var favourites = new Favourites(null, request.body.restaurantId, request.body.restaurant, request.body.userId,
-        request.body.username);
-    favouritesDB.addFavourites(favourites, function(error, result){
-        if(error){
-            respond.json(error);
-        }
-        else{
-            respond.json(result);
-        }
-    });
+    var token = request.params.token;
+    var restaurantid = request.body.restaurantid
+    try {
+        let username = jwt.verify(token,secret)
+        favouritesDB.addFavourites(restaurantid,username, function(error, result){
+            if(error){
+                respond.json(error);
+            }
+            else{
+                respond.json(result);
+            }
+        });
+        
+    } catch (error) {
+        respond.json("invalid token")
+        
+    }
 
 }
 

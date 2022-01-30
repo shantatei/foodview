@@ -29,18 +29,19 @@ app.route('/delete').delete(userController.deleteUser);
 app.route('/login').post(userController.LoginUser);
 app.route('/member').post(userController.getUser);
 app.route('/forgetpassword').post(userController.forgetPassword);
-app.get('/:username/:token', (req, res)=>{
-    res.sendFile(__dirname + '/public/reset-password.html')
-});
+
 app.post('/validate', userController.validation);
 app.put('/updatepassword',userController.updatePassword);
 
 
 //favourites routes
 app.route('/favourites').get(favouriteController.getAllFavourites)
-app.route('/favourites/:userId').get(favouriteController.getSomeFavourites)
-app.route('/favourites').post(favouriteController.addFavourites)
+app.route('/favourites/:token').get(favouriteController.getSomeFavourites)
+app.route('/favourites/:token').post(favouriteController.addFavourites)
 app.route('/favourites/:id').delete(favouriteController.deleteFavourites)
 
+app.get('/:username/:token', (req, res)=>{
+    res.sendFile(__dirname + '/public/reset-password.html')
+});
 app.listen(8080, "127.0.0.1");
 console.log("web server running @http://127.0.0.1:8080");

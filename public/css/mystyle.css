@@ -59,6 +59,31 @@ input[type="checkbox"] {
 }
 
 
+.favbtn{
+    background: none;
+    border: none;
+    outline: none;
+    border-color: transparent;
+    display: flex;
+    color: red;
+    
+}
+.favbtn:focus{
+    box-shadow: none !important
+
+}
+
+.favbtn:hover{
+    background: none;
+}
+.btn i:hover{
+    cursor: pointer;
+}
+
+
+
+
+
 
 
 

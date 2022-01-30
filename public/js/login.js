@@ -20,6 +20,7 @@ function loginMe(){
             sessionStorage.setItem("token",token.result);
             updateProfile();
             document.location.reload(true)
+            window.location.href = "index.html";
            
             
 

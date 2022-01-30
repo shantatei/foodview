@@ -13,7 +13,7 @@ $(document).ready(function () {
         getProfile.onload = function () {
             var profile = JSON.parse(getProfile.responseText);
             sessionStorage.setItem("profile",JSON.stringify(profile));
-            console.log(getProfile.responseText);
+            // console.log(getProfile.responseText);
             profilepic = profile[0].profilepic;
             email = profile[0].email;
             mobilenum = profile[0].mobilenum;

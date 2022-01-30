@@ -7,15 +7,14 @@ class FavouritesDB{
         db.query(sql, callback);
     }
 
-
-    getSomeFavourites(userID,callback){
-        var sql = "SELECT * from restaurant_review.favourites WHERE userId = ?";
-        return db.query(sql,[userID],callback);
+    getSomeFavourites(username,callback){
+        var sql = "SELECT * from restaurant_review.favourites WHERE username = ?";
+        return db.query(sql,[username],callback);
     }
 
-    addFavourites(favourites, callback){
-        var sql = "INSERT INTO favourites(restaurantId, restaurant, userId, username) VALUES(?, ?, ?, ?)";
-        db.query(sql,[favourites.getRestaurantId(), favourites.getRestaurant(), favourites.getUserId(), favourites.getUsername()], callback);
+    addFavourites(restaurantid,username, callback){
+        var sql = "INSERT INTO favourites(restaurantId,username) VALUES(?, ?)";
+        db.query(sql,[restaurantid,username], callback);
     }
 
     deleteFavourites(favouritesID, callback){

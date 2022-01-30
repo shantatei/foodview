@@ -1,8 +1,6 @@
-POST http://127.0.0.1:8080/validate
+DELETE   http://127.0.0.1:8080/favourites/10
 Content-Type: application/json
 
 {
-    "username": "shanta",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlaXJlbnh1YW5zaGFudGFAZ21haWwuY29tIiwiX2lkIjoxMjksInVzZXJuYW1lIjoic2hhbnRhIiwiaWF0IjoxNjQzMjczMzg4LCJleHAiOjE2NDMyNzQyODh9.uFbD9lSXRRVFI7dNJpImVHfnI1U3AXxhw9DhoN1cM24"
-
+    "restaurantid" :2
 }
