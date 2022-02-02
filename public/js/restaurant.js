@@ -15,6 +15,7 @@ function getRestaurantData() {
         sessionStorage.setItem("restaurant", JSON.stringify(restaurant_array));
         //Fetch the comments as well        
         fetchComments();
+        getUserList();
         getfav();
         console.log(restaurant_array) // output to console        
         //call the function so as to display all movies tiles for "Now Showing"        	
@@ -285,4 +286,19 @@ function onclickFav() {
 
 
 
+function getUserList() {
+    var request = new XMLHttpRequest();
+
+    request.open('GET', '/users', true);
+
+    //This command starts the calling of the comments api
+    request.onload = function () {
+        //get all the comments records into our comments array
+        user_array = JSON.parse(request.responseText);
+        sessionStorage.setItem("users", JSON.stringify(user_array));
+        console.log(user_array);
+    };
+
+    request.send();
+}
 

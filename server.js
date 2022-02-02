@@ -8,7 +8,7 @@ const res = require("express/lib/response");
 var app = express();
 
 app.use(express.static("./public"));
-app.use(express.json());
+app.use(express.json({limit: '50mb'}));
 
 //restaurant routes
 app.route('/restaurants').get(restaurantController.getAllRestaurants);

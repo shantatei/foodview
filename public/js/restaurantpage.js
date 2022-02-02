@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var restaurant_array = JSON.parse(sessionStorage.getItem("restaurant"));
+    var user_array = JSON.parse(sessionStorage.getItem("users"));
     var item = sessionStorage.getItem("item");
     console.log(item);
     currentIndex = item;
@@ -7,21 +8,29 @@ $(document).ready(function () {
     let favlist = JSON.parse(sessionStorage.getItem('favlist'))
     for (var i = 0; i < comment_array.length; i++) {
         if (comment_array[i].restaurantId === restaurant_array[item]._id) {
+            
 
-
-            document.getElementById("emptyComment").innerHTML = "";
-            star = "";
-            var html = '<div class="text-center" style="width:100%;">                                                           \
-                               <div class="card border-0" username = "'+ comment_array[i].username + '">                             \
-                                   <div class="card-body ">                                                                         \ \
-                                   <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
-                                   <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
-                                   <small>  @ " + comment_array[i].dateposted + "</small>   \
-                                   </div>                                                                                          \
-                               </div>                                                                                              \
-                           </div>";
-            document.getElementById("commentBody").insertAdjacentHTML('beforeend', html);
-
+            for (var user = 0; user<user_array.length; user++){
+                if (comment_array[i].username === user_array[user].username){
+                    console.log(user_array[user].picture );
+                    document.getElementById("emptyComment").innerHTML = "";
+                    star = "";
+                    var html = '<div class="text-center" style="width:100%;">                                                           \
+                                       <div class="card border-0" username = "'+ comment_array[i].username + '">                             \
+                                           <div class="card-body ">                                                                         \ \
+                                           <img src ="'+ user_array[user].profilepic + '" style="width:50px;border-radius: 50%;" /> \
+                                           <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
+                                           <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
+                                           <small>  @ " + comment_array[i].dateposted + "</small>   \
+                                           </div>                                                                                          \
+                                       </div>                                                                                              \
+                                   </div>";
+                                   
+                    document.getElementById("commentBody").insertAdjacentHTML('beforeend', html);
+                    
+                    
+                }
+            }
             var star = "";
             for (var j = 0; j < comment_array[i].rating; j++) {
                 star += "<img src='images/burger.png' style='width:30px' />";
@@ -31,14 +40,16 @@ $(document).ready(function () {
             star += "<i class='d-none far fa-edit fa-2x edit editcomment' data-toggle='modal' data-target='#editCommentModal' item='" + i + "' onClick='editComment(this)' ></i>";
             document.getElementById("rating" + i).insertAdjacentHTML('afterend', star + "<br/>");
         }
+
+       
+
+        
         for (let index = 0; index < favlist.length; index++) {
             if (favlist[index].restaurantId == restaurant_array[item]._id) {
-                console.log("yes");
                 document.querySelector(`.favbtn i`).classList.remove('far')
                 document.querySelector(`.favbtn i`).classList.add('fas')
                 document.querySelector(`.favbtn i`).title = "Delete from favourites"
             } else {
-                console.log("not favourited");
             }
 
 
