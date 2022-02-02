@@ -137,7 +137,7 @@ function registerMe() {
                 alert("Email has been taken, please change")
             }
         } else {
-            $('#successModal').modal('show');
+            $('#signupsuccessModal').modal('show');
             setTimeout(gotoindex, 1500)
         }
     }

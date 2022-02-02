@@ -12,7 +12,7 @@ $(document).ready(function () {
             document.getElementById("emptyComment").innerHTML = "";
             star = "";
             var html = '<div class="text-center" style="width:100%;">                                                           \
-                               <div class="card border-0" username = "'+comment_array[i].username+'">                             \
+                               <div class="card border-0" username = "'+ comment_array[i].username + '">                             \
                                    <div class="card-body ">                                                                         \ \
                                    <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
                                    <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
@@ -37,13 +37,13 @@ $(document).ready(function () {
                 document.querySelector(`.favbtn i`).classList.remove('far')
                 document.querySelector(`.favbtn i`).classList.add('fas')
                 document.querySelector(`.favbtn i`).title = "Delete from favourites"
-            }else{
+            } else {
                 console.log("not favourited");
             }
-            
-            
+
+
         }
-       
+
 
     }
     document.getElementById("restaurantTitle").textContent = restaurant_array[item].name;
@@ -56,8 +56,53 @@ $(document).ready(function () {
     document.getElementById("thursday").textContent = "Thursday :" + restaurant_array[item].thursday;
     document.getElementById("friday").textContent = "Friday:" + restaurant_array[item].friday;
     document.getElementById("description").textContent = restaurant_array[item].about;
+    var locations = [restaurant_array[item].location_name, restaurant_array[item].location_longitude, restaurant_array[item].location_latitude]
+    console.log(locations);
+    map = new google.maps.Map(document.getElementById("map"), { center: { lat: 1.8, lng: 110.9 }, zoom: 4 })
+    var infowindow = new google.maps.InfoWindow();
+    var marker, i;
+    var markers = []
+    restaurantmarker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[1], locations[2]),
+        map: map,
+        icon: {
+            url: "https://maps.google.com/mapfiles/ms/icons/restaurant.png"
+        }
+    });
 
+    markers.push(restaurantmarker);
+    google.maps.event.addListener(restaurantmarker, 'click', (function (marker, i) {
+        return function () {
+            infowindow.setContent(restaurant_array[item].name)
+            infowindow.open(map,marker);
+        }
+    })(marker, i))
 
+    navigator.geolocation.getCurrentPosition(
+        (position) => {
+            const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            }
+            map.setCenter(pos);
+            map.setZoom(15);
+            usermarker = new google.maps.Marker({
+                position: new google.maps.LatLng(pos.lat, pos.lng),
+                map: map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+            })
+
+            markers.push(usermarker);
+            google.maps.event.addListener(usermarker, 'click', (function (marker, i) {
+                return function () {
+                    infowindow.setContent("Your Current Location")
+                    infowindow.open(map,marker);
+                }
+            })(marker, i))
+        }
+    )
 })
 
 function editComment(element) {
@@ -87,7 +132,7 @@ function updateComment() {
     var comment_array = JSON.parse(sessionStorage.getItem('comments'));
     var response = confirm("Are you sure you want to update this comment?");
     if (response == true) {
-        
+
         var edit_comment_url = comment_url + "/" + comment_array[currentIndex]._id;
         var updateComment = new XMLHttpRequest(); // new HttpRequest instance to send request to server
         updateComment.open("PUT", edit_comment_url, true); //The HTTP method called 'PUT' is used here as we are updating data
@@ -121,7 +166,7 @@ function deleteComment(element) {
         eraseComment.onload = function () {
             fetchComments();
         };
-        eraseComment.send(JSON.stringify({token:sessionStorage.getItem('token')}));
+        eraseComment.send(JSON.stringify({ token: sessionStorage.getItem('token') }));
     }
 }
 
@@ -175,7 +220,7 @@ function rateIt(element) {
 }
 function newComment() {
     var profile = JSON.parse(sessionStorage.getItem("profile"));
-    username = profile[0].username; 
+    username = profile[0].username;
     rating = 0;
     document.getElementById("userComments").value = "";
     document.getElementById("nickname").value = username;
@@ -188,10 +233,10 @@ function fetchComments() {
 
     //This command starts the calling of the comments api
     request.onload = function () {
-    //get all the comments records into our comments array
-    comment_array = JSON.parse(request.responseText);
-    sessionStorage.setItem("comments",JSON.stringify(comment_array));
-    document.location.reload(true)
+        //get all the comments records into our comments array
+        comment_array = JSON.parse(request.responseText);
+        sessionStorage.setItem("comments", JSON.stringify(comment_array));
+        document.location.reload(true)
     };
 
     request.send();
@@ -201,8 +246,8 @@ function addComment() {
     var restaurant_array = JSON.parse(sessionStorage.getItem("restaurant"));
     var comment = new Object();
     var item = sessionStorage.getItem("item")
-    comment.restaurantId = restaurant_array[item]._id; 
-    comment.restaurant = restaurant_array[item].name; 
+    comment.restaurantId = restaurant_array[item]._id;
+    comment.restaurant = restaurant_array[item].name;
     comment.username = document.getElementById("nickname").value;// Value from HTML input text
     comment.review = document.getElementById("userComments").value; // Value from HTML input text
     comment.datePosted = null; // Change the datePosted to null instead of taking the timestamp on the client side;
@@ -213,12 +258,12 @@ function addComment() {
     postComment.open("POST", comment_url, true); //Use the HTTP POST method to send data to server
 
     postComment.setRequestHeader("Content-Type", "application/json");
-    postComment.onload = function() {
-        	console.log("new comment sent");
-	fetchComments(); // fetch all comments again so that the web page can have updated comments.     
+    postComment.onload = function () {
+        console.log("new comment sent");
+        fetchComments(); // fetch all comments again so that the web page can have updated comments.     
     };
-// Convert the data in Comment object to JSON format before sending to the server.
-    postComment.send(JSON.stringify(comment)); 
+    // Convert the data in Comment object to JSON format before sending to the server.
+    postComment.send(JSON.stringify(comment));
 }
 
 function toggleLike(element) {
@@ -284,3 +329,18 @@ function getfav(username, restaurantid) {
     }
     getfav.send()
 }
+
+function onclickFav() {
+    console.log("clicked");
+    let favRestaurants = [];
+    let favs = JSON.parse(sessionStorage.getItem('favlist'));
+    JSON.parse(sessionStorage.getItem('restaurant')).forEach(restaurant => {
+        favs.forEach(fav => {
+            if (restaurant._id == fav.restaurantId) {
+                favRestaurants.push(restaurant);
+            }
+        })
+    })
+    displayRestaurants(null, favRestaurants)
+    sessionStorage.setItem("restaurant", JSON.stringify(favRestaurants));
+}  
