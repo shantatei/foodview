@@ -72,7 +72,9 @@ function updatePassword(){
     updatepassword.setRequestHeader("Content-Type","application/json");
     updatepassword.onload = function(){
 
-        $('#successModal').modal('show');
+        $('#passwordresetmodal').modal('show');
+        document.getElementById("usernamereset").textContent = username
+        // window.location.href ="index.html"
           
     }
     var passwordvalue = document.getElementById("newpassword").value
@@ -92,6 +94,10 @@ function updatePassword(){
 
     // var payload = {username:username,password:passwordvalue}
     // updatepassword.send(JSON.stringify(payload));
+}
+
+function afterreset(){
+    window.location.href ="/index.html"
 }
 
 

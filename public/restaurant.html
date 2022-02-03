@@ -24,6 +24,7 @@
         <Button class="btn favbtn" title="Add to Favourites" onclick="toggleLike(this)" item="' + count + '" id="favbtns">
             <i class=" far fa-heart fa-lg" item="' + count + '"></i>
         </Button>
+    
         <!-- Restaurant Image -->
         <img class="img-fluid img-thumbnail" id="restaurantPic">
 
@@ -47,7 +48,8 @@
 
     <div class="container">
 
-        <h3 style="margin-top: 10px;">Reviews</h3>
+        <h3 style="margin-top: 10px;">Reviews</h3> 
+        <h6>Average rating <p id ="average rating"></p><i class="far fa-star"></i></h6>
         <div class="card-body border-0">
 
             <div id="emptyComment">No review yet. Create one now</div>
@@ -61,8 +63,6 @@
     </div>
 
 
-    <!-- Include the message modal here -->
-    <div w3-include-html="message-modal.html"></div>
     <br><br>
 
     <div w3-include-html="edit-comments-modal.html"></div>
@@ -71,6 +71,7 @@
     <div w3-include-html="success-modal.html"></div>
     <div w3-include-html="fail-modal.html"></div>
     <div w3-include-html="login-modal.html"></div>
+    <div w3-include-html="loginsuccess.html"></div>
 
 </body>
 <script src="https://www.w3schools.com/lib/w3.js"></script>

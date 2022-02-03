@@ -7,7 +7,7 @@ var category = "Restaurants";
 var currentIndex=0;
 var comment_url = "/comments";
 var comment_array = []; // This creates an empty comment array
-var popcornBWImage = 'images/burgerbw.png';
-var popcornImage = 'images/burger.png';
+var popcornBWImage = 'images/star-regular.png';
+var popcornImage = 'images/star-solid.png';
 var rating = 0;
 

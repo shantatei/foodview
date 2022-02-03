@@ -60,7 +60,8 @@ function forgetPassword() {
     forgetpassword.onload = function () {
         let results = JSON.parse(forgetpassword.responseText);
         console.log(results);
-        results == 'success'? $('#successModal').modal('show'): $('#failModal').modal('show');
+        results == 'success'? $('#sentmailmodal').modal('show'): $('#failModal').modal('show');
+        document.getElementById("sentmail").textContent = emailvalue
     
     }
   
@@ -77,4 +78,8 @@ function forgetPassword() {
     forgetpassword.send(JSON.stringify(payload));
 
     }
+}
+
+function afteremail(){
+    window.location.href = "index.html";
 }

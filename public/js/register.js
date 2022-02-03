@@ -138,7 +138,7 @@ function registerMe() {
             }
         } else {
             $('#signupsuccessModal').modal('show');
-            setTimeout(gotoindex, 1500)
+            // setTimeout(gotoindex, 1500)
         }
     }
   

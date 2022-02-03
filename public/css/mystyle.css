@@ -79,6 +79,11 @@ input[type="checkbox"] {
 .btn i:hover{
     cursor: pointer;
 }
+#signupmodal{
+    border: 2px solid #0f0505;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
 
 
 

@@ -10,7 +10,7 @@ function loginMe(){
         var token = JSON.parse(loginUser.responseText);
         console.log(token.result);
         if (token.result != "invalid") {
-            $('#successModal').modal('show');
+            $('#loginsuccessmodal').modal('show');
             document.getElementById("registerMenu").style.display = "none";
             document.getElementById("loginMenu").style.display = "none";
             document.getElementById("logoutMenu").style.display = "block";
@@ -18,12 +18,11 @@ function loginMe(){
             document.getElementById("dropdownMenuLink").style.display = "block";
             document.getElementById("navbrand").style.display = "block";
             sessionStorage.setItem("token",token.result);
+            var username = document.getElementById("usernameLogin").value;
             updateProfile();
-            document.location.reload(true)
-            window.location.href = "index.html";
-           
+            document.getElementById("usernamelogin").textContent = username
             
-
+        
         } else {
             $('#failModal').modal('show');
             
@@ -67,4 +66,9 @@ function updateProfile(){
         getProfile.send(JSON.stringify(payload));
 
     }
+}
+
+function afterlogin(){
+    document.location.reload(true)
+    window.location.href = "index.html";
 }

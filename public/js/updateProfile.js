@@ -23,8 +23,7 @@ function update(){
     updateUser.setRequestHeader("Content-Type","application/json");
     updateUser.onload = function(){
 
-        $('#successModal').modal('show');
-        document.location.reload(true)
+        $('#updatesuccessmodal').modal('show');
           
     }
     mobilenum = document.getElementById("telephone").value;
@@ -38,6 +37,9 @@ function update(){
     updateUser.send(JSON.stringify(payload));
 }
 
+function afterupdate(){
+    document.location.reload(true)
+}
 
 
 

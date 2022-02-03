@@ -1,6 +1,6 @@
 "use strict";
 const UsersDB = require('../models/UsersDB');
-const User = require('../models/User');
+ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var secret = "somesecretkey";
@@ -12,7 +12,7 @@ var nodemailer = require('nodemailer');
 var transponder = nodemailer.createTransport({
     service:'gmail',
     auth:{
-        user: 'botseng1@gmail.com',
+        user: 'noreplyfoodview@gmail.com',
         pass:'shantasen'
     }
 })
@@ -20,12 +20,20 @@ var transponder = nodemailer.createTransport({
 function sendGmail(email,content){
 
     var mailoptions = {
-        from :'teirenxuanshanta@gmail.com',
+        from :'noreplyfoodview@gmail.com',
         to: email ,
         subject: 'Password reset link',
         text: content,
         html: '<strong>' + content + '</strong>'
     }
+    
+    transponder.verify(function(error, success) {
+        if (error) {
+             console.log(error);
+        } else {
+             console.log('Server is ready to take our messages');
+        }
+     });
 
     transponder.sendMail(mailoptions,function(error,info) {
         if (error) {

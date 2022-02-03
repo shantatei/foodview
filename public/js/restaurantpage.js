@@ -12,13 +12,13 @@ $(document).ready(function () {
 
             for (var user = 0; user<user_array.length; user++){
                 if (comment_array[i].username === user_array[user].username){
-                    console.log(user_array[user].picture );
-                    document.getElementById("emptyComment").innerHTML = "";
+                    if (user_array[user].profilepic == null){
+                        document.getElementById("emptyComment").innerHTML = "";
                     star = "";
                     var html = '<div class="text-center" style="width:100%;">                                                           \
                                        <div class="card border-0" username = "'+ comment_array[i].username + '">                             \
                                            <div class="card-body ">                                                                         \ \
-                                           <img src ="'+ user_array[user].profilepic + '" style="width:50px;border-radius: 50%;" /> \
+                                           <img id = "userimage" src ="images/user.png" style="width:50px;border-radius: 50%;" /> \
                                            <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
                                            <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
                                            <small>  @ " + comment_array[i].dateposted + "</small>   \
@@ -27,18 +27,34 @@ $(document).ready(function () {
                                    </div>";
                                    
                     document.getElementById("commentBody").insertAdjacentHTML('beforeend', html);
-                    
-                    
+                    }else{
+                    document.getElementById("emptyComment").innerHTML = "";
+                    star = "";
+                    var html = '<div class="text-center" style="width:100%;">                                                           \
+                                       <div class="card border-0" username = "'+ comment_array[i].username + '">                             \
+                                           <div class="card-body ">                                                                         \ \
+                                           <img id = "userimage"src ="'+ user_array[user].profilepic + '" style="width:50px;border-radius: 50%;" /> \
+                                           <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
+                                           <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
+                                           <small>  @ " + comment_array[i].dateposted + "</small>   \
+                                           </div>                                                                                          \
+                                       </div>                                                                                              \
+                                   </div>";
+                                   
+                    document.getElementById("commentBody").insertAdjacentHTML('beforeend', html);
+                    }
+                   
                 }
             }
             var star = "";
             for (var j = 0; j < comment_array[i].rating; j++) {
-                star += "<img src='images/burger.png' style='width:30px' />";
+                star += "<img src='images/star-solid.png' style='width:30px' />";
 
             }
-            star += "<i class='d-none far fa-trash-alt fa-2x edit deletecomment' data-dismiss='modal' item='" + i + "' onClick='deleteComment(this)' ></i>";
-            star += "<i class='d-none far fa-edit fa-2x edit editcomment' data-toggle='modal' data-target='#editCommentModal' item='" + i + "' onClick='editComment(this)' ></i>";
+            star += "<i class='d-none far fa-trash-alt fa-2x edit deletecomment'  title = 'Delete Comment'data-dismiss='modal' item='" + i + "' onClick='deleteComment(this)'  ></i>";
+            star += "<i class='d-none far fa-edit fa-2x edit editcomment' title = 'Edit Comment'data-toggle='modal' data-target='#editCommentModal' item='" + i + "' onClick='editComment(this)' ></i>";
             document.getElementById("rating" + i).insertAdjacentHTML('afterend', star + "<br/>");
+
         }
 
        
@@ -54,6 +70,7 @@ $(document).ready(function () {
 
 
         }
+
 
 
     }
@@ -74,7 +91,7 @@ $(document).ready(function () {
     var marker, i;
     var markers = []
     restaurantmarker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[1], locations[2]),
+        position: new google.maps.LatLng(locations[2], locations[1]),
         map: map,
         icon: {
             url: "https://maps.google.com/mapfiles/ms/icons/restaurant.png"
