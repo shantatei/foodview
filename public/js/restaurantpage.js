@@ -6,6 +6,7 @@ $(document).ready(function () {
     currentIndex = item;
     var comment_array = JSON.parse(sessionStorage.getItem('comments'));
     let favlist = JSON.parse(sessionStorage.getItem('favlist'))
+    var totalratings = []
     for (var i = 0; i < comment_array.length; i++) {
         if (comment_array[i].restaurantId === restaurant_array[item]._id) {
             
@@ -49,15 +50,17 @@ $(document).ready(function () {
             var star = "";
             for (var j = 0; j < comment_array[i].rating; j++) {
                 star += "<img src='images/star-solid.png' style='width:30px' />";
+                
 
             }
             star += "<i class='d-none far fa-trash-alt fa-2x edit deletecomment'  title = 'Delete Comment'data-dismiss='modal' item='" + i + "' onClick='deleteComment(this)'  ></i>";
             star += "<i class='d-none far fa-edit fa-2x edit editcomment' title = 'Edit Comment'data-toggle='modal' data-target='#editCommentModal' item='" + i + "' onClick='editComment(this)' ></i>";
             document.getElementById("rating" + i).insertAdjacentHTML('afterend', star + "<br/>");
-
+            
+           totalratings.push(comment_array[i].rating);
         }
-
-       
+        
+        
 
         
         for (let index = 0; index < favlist.length; index++) {
@@ -74,6 +77,9 @@ $(document).ready(function () {
 
 
     }
+    
+    calculateAverage(totalratings);
+    console.log(totalratings);
     document.getElementById("restaurantTitle").textContent = restaurant_array[item].name;
     document.getElementById("restaurantPic").src = restaurant_array[item].picture;
     document.getElementById("type").textContent = restaurant_array[item].type;
@@ -114,7 +120,7 @@ $(document).ready(function () {
             }
             map.setCenter(pos);
             map.setZoom(15);
-            usermarker = new google.maps.Marker({
+            marker = new google.maps.Marker({
                 position: new google.maps.LatLng(pos.lat, pos.lng),
                 map: map,
                 icon: {
@@ -122,8 +128,8 @@ $(document).ready(function () {
                 }
             })
 
-            markers.push(usermarker);
-            google.maps.event.addListener(usermarker, 'click', (function (marker, i) {
+            markers.push(marker);
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
                 return function () {
                     infowindow.setContent("Your Current Location")
                     infowindow.open(map,marker);
@@ -133,6 +139,25 @@ $(document).ready(function () {
     )
 })
 
+
+function calculateAverage(array) {
+    var total = 0;
+    var count = 0;
+
+    array.forEach(function(item, index) {
+        total += item;
+        count++;
+    });
+
+    var average = total / count;
+    console.log(average);
+    if (isNaN(average)) {
+        document.getElementById("average rating").textContent = 0
+    } else {
+        document.getElementById("average rating").textContent = average 
+    }
+    
+}
 function editComment(element) {
     var item = element.getAttribute("item");
     currentIndex = item;
