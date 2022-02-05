@@ -12,6 +12,9 @@ $(document).ready(function () {
             
 
             for (var user = 0; user<user_array.length; user++){
+                let datePosted = comment_array[i].dateposted;
+                datePosted = new Date(datePosted);
+                datePosted = datePosted.toDateString() + " " + datePosted.toLocaleTimeString();
                 if (comment_array[i].username === user_array[user].username){
                     if (user_array[user].profilepic == null){
                         document.getElementById("emptyComment").innerHTML = "";
@@ -22,7 +25,7 @@ $(document).ready(function () {
                                            <img id = "userimage" src ="images/user.png" style="width:50px;border-radius: 50%;" /> \
                                            <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
                                            <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
-                                           <small>  @ " + comment_array[i].dateposted + "</small>   \
+                                           <small>   " + datePosted + "</small>   \
                                            </div>                                                                                          \
                                        </div>                                                                                              \
                                    </div>";
@@ -37,7 +40,7 @@ $(document).ready(function () {
                                            <img id = "userimage"src ="'+ user_array[user].profilepic + '" style="width:50px;border-radius: 50%;" /> \
                                            <h6 style = "text-transform: capitalize; ">' + comment_array[i].username + '</h6>   \
                                            <p class="card-text" id="rating' + i + '">' + comment_array[i].review + "</p>               \
-                                           <small>  @ " + comment_array[i].dateposted + "</small>   \
+                                           <small>  " + datePosted + "</small>   \
                                            </div>                                                                                          \
                                        </div>                                                                                              \
                                    </div>";

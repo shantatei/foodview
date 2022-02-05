@@ -68,7 +68,10 @@ function updateProfile(){
     }
 }
 
+$('#loginsuccessmodal').on('hidden.bs.modal', () => {
+    window.location.href = "index.html";
+});
+
 function afterlogin(){
-    document.location.reload(true)
     window.location.href = "index.html";
 }

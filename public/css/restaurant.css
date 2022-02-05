@@ -84,3 +84,7 @@ footer {
 .btn i:hover{
     cursor: pointer;
 }
+
+#target,#foodview{
+    border-radius: 50%;
+}

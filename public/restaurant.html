@@ -20,7 +20,7 @@
     <div w3-include-html="top-navigation.html"></div>
     <div class="container ">
         <!-- Restaurant Title -->
-        <h2 id="restaurantTitle" >Restaurant Title</h2>
+        <h2 id="restaurantTitle" class="mt-2" >Restaurant Title</h2>
         <Button class="btn favbtn" title="Add to Favourites" onclick="toggleLike(this)" item="' + count + '" id="favbtns">
             <i class=" far fa-heart fa-lg" item="' + count + '"></i>
         </Button>
@@ -49,7 +49,7 @@
     <div class="container">
 
         <h3 style="margin-top: 10px;">Reviews</h3> 
-        <h6>Average rating <p id ="average rating"></p><i class="far fa-star"></i></h6>
+        <h6>Average rating <div class="d-flex align-items-top" style="margin-top:1rem ; font-weight: bold;"><p id ="average rating"></p><i class="far fa-star ml-1"></i></div></h6>
         <div class="card-body border-0">
 
             <div id="emptyComment">No review yet. Create one now</div>
