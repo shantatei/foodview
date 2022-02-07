@@ -10,7 +10,6 @@ $(document).ready(function () {
     for (var i = 0; i < comment_array.length; i++) {
         if (comment_array[i].restaurantId === restaurant_array[item]._id) {
             
-
             for (var user = 0; user<user_array.length; user++){
                 let datePosted = comment_array[i].dateposted;
                 datePosted = new Date(datePosted);
@@ -153,6 +152,7 @@ function calculateAverage(array) {
     });
 
     var average = total / count;
+    average = average.toFixed(2)
     console.log(average);
     if (isNaN(average)) {
         document.getElementById("average rating").textContent = 0
