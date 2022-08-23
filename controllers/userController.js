@@ -4,7 +4,6 @@ const UsersDB = require('../models/UsersDB');
 const bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var secret = "somesecretkey";
-const sgMail = require('@sendgrid/mail');
 const req = require('express/lib/request');
 const res = require('express/lib/response');
 var nodemailer = require('nodemailer');
@@ -222,25 +221,6 @@ function validation(req, res) {
             }
         }
     })
-}
-
-//sending email
-function sentMail(email, content) {
-    sgMail.setApiKey("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")
-    const msg = {
-        to: email, // Change to your recipient
-        from: '2101683G@student.tp.edu.sg', // Change to your verified sender
-        subject: 'Password reset link',
-        text: content,
-        html: '<strong>' + content + '</strong>',
-    }
-    sgMail
-        .send(msg)
-        .catch(error => {
-            console.log(error);
-            return false;
-        })
-    
 }
 
 function updatePassword(request, respond) {
